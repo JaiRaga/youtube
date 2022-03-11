@@ -22,6 +22,16 @@ type VideoListItemProps = {
 
 const VideoListItem = (props: VideoListItemProps) => {
 	const { video } = props
+	const minutes = Math.floor(video.duration / 60)
+	const seconds = video.duration % 60
+
+	let viewString = video.views.toString()
+	if (video.views > 1000000) {
+		viewString = (video.views / 1000000).toFixed(1) + 'm'
+	} else if (video.views > 1000) {
+		viewString = (video.views / 1000).toFixed(1) + 'k'
+	}
+
 	return (
 		<View style={styles.videoCard}>
 			{/* Thumbnail */}
@@ -33,7 +43,10 @@ const VideoListItem = (props: VideoListItemProps) => {
 					}}
 				/>
 				<View style={styles.timeContainer}>
-					<Text style={styles.time}>{video.duration}</Text>
+					<Text style={styles.time}>
+						{minutes}:{seconds < 10 ? 0 : ''}
+						{seconds}
+					</Text>
 				</View>
 			</View>
 			{/* Title row */}
@@ -48,10 +61,10 @@ const VideoListItem = (props: VideoListItemProps) => {
 
 				{/* Middle containe: title, subtitle */}
 				<View style={styles.middleContainer}>
-					<Text style={styles.title}>
-						{video.title}
+					<Text style={styles.title}>{video.title}</Text>
+					<Text style={styles.subTitle}>
+						{video.user.name} {viewString} {video.createdAt}
 					</Text>
-					<Text style={styles.subTitle}>{video.user.name} {video.views} {video.createdAt}</Text>
 				</View>
 				{/* Icon */}
 				<Entypo name='dots-three-vertical' size={16} color='white' />
