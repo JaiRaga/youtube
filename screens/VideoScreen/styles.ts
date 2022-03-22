@@ -52,11 +52,15 @@ const styles = StyleSheet.create({
 	},
 	userContainer: {
 		flexDirection: 'row',
-		alignItems: 'center'
+		alignItems: 'center',
+		borderColor: '#ffffff22',
+		borderTopWidth: 1,
+		borderBottomWidth: 1,
+		padding: 5
 	},
 	userTextContainer: {
 		marginHorizontal: 10,
-		flex: 1
+		flex: 1,
 	},
 	username: {
 		color: 'white',
@@ -72,6 +76,25 @@ const styles = StyleSheet.create({
 		fontSize: 20,
 		fontWeight: 'bold',
 		padding: 10
+	},
+	// Comments
+	commentContainer: {
+		flexDirection: 'row',
+		alignItems: 'center',
+		padding: 5
+	},
+	commentTitle: {
+		color: 'white',
+		marginVertical: 10
+	},
+	commentAvatar: {
+		width: 35,
+		height: 35,
+		borderRadius: 20
+	},
+	commentUsername: {
+		color: 'white',
+		marginLeft: 10
 	}
 })
 
