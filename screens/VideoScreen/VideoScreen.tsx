@@ -92,6 +92,14 @@ const VideoScreen = () => {
 			</View>
 
 			{/* Comments */}
+			<View>
+				<Text style={styles.commentTitle}>Comments 108</Text>
+				<View style={styles.commentContainer}>
+					<Image style={styles.commentAvatar} source={{ uri: video.user.image }} />
+
+					<Text style={styles.commentUsername}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem, saepe!</Text>
+				</View>
+			</View>
 
 			{/* Recommended Videos */}
 		</SafeAreaView>
