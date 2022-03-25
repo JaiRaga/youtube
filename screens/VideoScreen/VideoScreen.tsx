@@ -5,13 +5,17 @@ import {
 	View,
 	SafeAreaView,
 	ScrollView,
+	FlatList,
 } from 'react-native'
 import React from 'react'
 import { AntDesign } from '@expo/vector-icons'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import { Ionicons } from '@expo/vector-icons'
 import video from '../../assets/data/video.json'
+import videos from '../../assets/data/videos.json'
+import VideoListItem from '../../components/VideoListItem/VideoListItem'
 import styles from './styles'
+import VideoPlayer from '../../components/VideoPlayer'
 
 const VideoScreen = () => {
 	let viewString = video.views.toString()
@@ -21,9 +25,10 @@ const VideoScreen = () => {
 		viewString = (video.views / 1000).toFixed(1) + 'k'
 	}
 	return (
-		<SafeAreaView style={styles.container}>
+		<View style={styles.container}>
 			{/* Video Player */}
-			<Image style={styles.videoPlayer} source={{ uri: video.thumbnail }} />
+			<VideoPlayer videoURI={video.videoUrl} thumbnailURI={video.thumbnail} />
+			{/* <Image style={styles.videoPlayer} source={{ uri: video.thumbnail }} /> */}
 
 			{/* Video Info */}
 			<View style={styles.videoInfoContainer}>
@@ -95,15 +100,33 @@ const VideoScreen = () => {
 			<View>
 				<Text style={styles.commentTitle}>Comments 108</Text>
 				<View style={styles.commentContainer}>
-					<Image style={styles.commentAvatar} source={{ uri: video.user.image }} />
+					<Image
+						style={styles.commentAvatar}
+						source={{ uri: video.user.image }}
+					/>
 
-					<Text style={styles.commentUsername}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem, saepe!</Text>
+					<Text style={styles.commentUsername}>
+						Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem, saepe!
+					</Text>
 				</View>
 			</View>
+		</View>
+	)
+}
 
-			{/* Recommended Videos */}
+{
+	/* Recommended Videos */
+}
+const VideoScreenWithRecommendation = () => {
+	return (
+		<SafeAreaView style={styles.videoScreenWithFlatList}>
+			<FlatList
+				data={videos}
+				renderItem={({ item }) => <VideoListItem video={item} />}
+				ListHeaderComponent={VideoScreen}
+			/>
 		</SafeAreaView>
 	)
 }
 
-export default VideoScreen
+export default VideoScreenWithRecommendation

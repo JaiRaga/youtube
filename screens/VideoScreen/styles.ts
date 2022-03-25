@@ -95,6 +95,9 @@ const styles = StyleSheet.create({
 	commentUsername: {
 		color: 'white',
 		marginLeft: 10
+	},
+	videoScreenWithFlatList: {
+		// marginTop: RnStatusBar.currentHeight
 	}
 })
 
